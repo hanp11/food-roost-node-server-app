@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/hanp11/food-roost-node-server-app#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mongoose": "^6.8.0"
   }
 }
