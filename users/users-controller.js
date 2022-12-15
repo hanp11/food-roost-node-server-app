@@ -7,7 +7,8 @@ const UsersController = (app) => {
   app.post('/api/register', register);
   app.post('/api/login', login);
   app.post('/api/logout', logout);
-  app.post('/api/profile', profile);
+
+  app.get('/api/profile', profile);
 
   app.put('/api/users/:uid', updateUser);
   app.delete('/api/users/:uid', deleteUser);
@@ -32,7 +33,7 @@ const register = async (req, res) => {
   const user = req.body;
   const existingUser = await userDao.findUserByUsername(user.username);
   if (existingUser) {
-    res.sendStatus(403);
+    res.status(403).send('Username already exists');
     return;
   }
   const currentUser = await userDao.createUser(user);
@@ -49,7 +50,7 @@ const login = async (req, res) => {
     res.json(existingUser);
     return;
   }
-  res.sendStatus(403);
+  res.status(403).send('Incorrect username or password');
 }
 
 const logout = (req, res) => {
