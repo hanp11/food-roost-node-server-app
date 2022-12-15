@@ -6,8 +6,6 @@ const usersSchema = mongoose.Schema({
   email: String,
   fullName: String,
   dateJoined: {type: Date, required: true},
-  following: Array,
-  followers: Array,
   role: {type: String, enum: ['ADMIN', 'NUTRITIONIST', 'FOODIE']}
 }, {collection: 'users'});
 
