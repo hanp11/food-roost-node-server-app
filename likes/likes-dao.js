@@ -9,7 +9,7 @@ export const userUnlikesRecipe = async (uid, rid) =>
 export const findRecipesLikedByUser = async(uid) => {
   return await likesModel
   .find({user: uid}, {user: false})
-  .populate('recipe', 'label')
+  .populate('recipe', ['label', 'edamamId'])
   .exec()
 }
 
