@@ -8,6 +8,8 @@ import RecipesController from "./recipes/recipes-controller.js";
 import LikesController from "./likes/likes-controller.js";
 import RecipeOfTheDayController
   from "./recipe-of-the-day/recipe-of-the-day-controller.js";
+import ExpertAdviceController
+  from "./expert-advice/expert-advice-controller.js";
 
 //MongooseServerSelectionError: connect ECONNREFUSED ::1:27017
 //The connection to localhost is refused on the IPv6 address ::1
@@ -38,5 +40,6 @@ FollowsController(app);
 RecipesController(app);
 LikesController(app);
 RecipeOfTheDayController(app);
+ExpertAdviceController(app);
 
 app.listen(process.env.PORT || 4000);
