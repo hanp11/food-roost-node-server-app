@@ -21,7 +21,6 @@ const findAllExpertAdvice = async (req, res) => {
 
 const findExpertAdviceByUsernames = async (req, res) => {
   const data = req.body
-  console.log(data.usernames)
   const expertAdvice = await expertAdviceDao.findExpertAdviceByUsernames(data.usernames);
   res.json(expertAdvice);
 }

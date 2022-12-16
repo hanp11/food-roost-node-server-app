@@ -69,7 +69,6 @@ const profile = (req, res) => {
 const updateUser = async (req, res) => {
   const userId = req.params.uid;
   const updates = req.body;
-  console.log(updates)
   const existingUser = await userDao.findUserById(userId);
   if (!existingUser) {
     res.status(403).send('User does not exist');
