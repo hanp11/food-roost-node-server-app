@@ -3,7 +3,7 @@ import * as recipesDao from './recipes-dao.js';
 const RecipesController = (app) => {
   app.get('/api/recipes', findAllRecipes);
   app.get('/api/recipes/:rid', findRecipeById);
-  //app.get('/api/recipes/label', findRecipeByLabel);
+  app.get('/api/recipes/edamamId/:edamamId', findRecipeByEdamamId);
 
   app.post('/api/recipes', createRecipe);
 }
@@ -11,6 +11,16 @@ const RecipesController = (app) => {
 const findRecipeById = async (req, res) => {
   const rid = req.params.rid;
   const recipe = await recipesDao.findRecipeById(rid);
+  if (recipe) {
+    res.json(recipe);
+    return;
+  }
+  res.sendStatus(404);
+}
+
+const findRecipeByEdamamId = async (req, res) => {
+  const edamamId = req.params.edamamId;
+  const recipe = await recipesDao.findRecipeByEdamamId(edamamId);
   if (recipe) {
     res.json(recipe);
     return;

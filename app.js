@@ -5,6 +5,7 @@ import session from 'express-session';
 import UsersController from "./users/users-controller.js";
 import FollowsController from "./follows/follows-controller.js";
 import RecipesController from "./recipes/recipes-controller.js";
+import LikesController from "./likes/likes-controller.js";
 
 //MongooseServerSelectionError: connect ECONNREFUSED ::1:27017
 //The connection to localhost is refused on the IPv6 address ::1
@@ -33,5 +34,6 @@ app.use(express.json());
 UsersController(app);
 FollowsController(app);
 RecipesController(app);
+LikesController(app);
 
 app.listen(process.env.PORT || 4000);

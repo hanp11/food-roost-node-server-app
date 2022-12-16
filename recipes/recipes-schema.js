@@ -5,7 +5,8 @@ const recipesSchema = mongoose.Schema({
   yield: Number,
   calories: Number,
   ingredients: Array,
-  directionsUrl: String
+  directionsUrl: String,
+  edamamId: String
 }, {collection: 'recipes'});
 
 export default recipesSchema;

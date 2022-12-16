@@ -1,6 +1,6 @@
 import * as likesDao from './likes-dao.js';
 
-const LikesController = () => {
+const LikesController = (app) => {
   app.post('/api/users/likes/:rid', userLikesRecipe);
 
   app.delete('/api/users/unlikes/:rid', userUnlikesRecipe);
@@ -13,15 +13,17 @@ const LikesController = () => {
 const userLikesRecipe = async (req, res) => {
   const uid = req.session['currentUser']._id
   const rid = req.params.rid
-
-  const newLike = await likesDao.userLikesRecipe(uid, rid)
-  res.json(newLike)
+  await likesDao.userLikesRecipe(uid, rid)
+  const likes = await likesDao.findAllLikes()
+  res.json(likes)
 }
 
 const userUnlikesRecipe = async (req, res) => {
-  const {uid, rid} = req.params
-  const status = await likesDao.userUnlikesRecipe(uid, rid)
-  res.send(status)
+  const uid = req.session['currentUser']._id
+  const rid = req.params.rid
+  await likesDao.userUnlikesRecipe(uid, rid)
+  const likes = await likesDao.findAllLikes()
+  res.json(likes)
 }
 
 const findAllLikes = async (req, res) => {
@@ -40,3 +42,5 @@ const findUsersWhoLikedRecipe = async (req, res) => {
   const users = await likesDao.findUsersThatLikeRecipe(rid)
   res.json(users)
 }
+
+export default LikesController;
