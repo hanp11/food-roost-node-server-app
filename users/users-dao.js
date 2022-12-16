@@ -1,7 +1,7 @@
 import usersModel from "./users-model.js";
 
-export const findUserById = (uid) =>
-    usersModel.findById(uid, {password: false});
+export const findUserById = async (uid) =>
+    await usersModel.findById(uid, {password: false});
 
 export const findUserByUsername = async (username) =>
     await usersModel.findOne({username});

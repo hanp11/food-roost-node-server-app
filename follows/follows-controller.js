@@ -11,14 +11,17 @@ const followUser = async (req, res) => {
   const follow = req.body;
   const currentUser = req.session['currentUser'];
   follow.follower = currentUser._id;
-  const actualFollow = await dao.followUser(follow);
-  res.json(actualFollow);
+  await dao.followUser(follow);
+  const followed = await dao.findFollowing(currentUser._id);
+  res.json(followed);
 }
 
 const unfollowUser = async (req, res) => {
   const followId = req.params['followId'];
   await dao.unfollowUser(followId);
-  res.sendStatus(200);
+  const currentUser = req.session['currentUser'];
+  const followed = await dao.findFollowing(currentUser._id);
+  res.json(followed);
 }
 
 const findFollowers = async (req, res) => {
