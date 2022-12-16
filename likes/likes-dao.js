@@ -15,7 +15,7 @@ export const findRecipesLikedByUser = async(uid) => {
 
 export const findUsersThatLikeRecipe = async(rid) => {
   return await likesModel.find({recipe: rid}, {recipe: false})
-  .populate('user', 'username')
+  .populate('user', ['fullName', 'username'])
   .exec()
 }
 
